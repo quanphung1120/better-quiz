@@ -17,13 +17,13 @@ const EmailTemplate = ({
       </p>
 
       <p>
-        If the link doesn't work, you can copy and paste this URL into your
+        If the link doesn&apos;t work, you can copy and paste this URL into your
         browser:
       </p>
 
       <p>{magicLink}</p>
 
-      <p>If you didn't request this email, you can safely ignore it.</p>
+      <p>If you didn&apos;t request this email, you can safely ignore it.</p>
     </div>
   );
 };

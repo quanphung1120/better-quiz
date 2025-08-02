@@ -33,7 +33,7 @@ export const auth = betterAuth({
   plugins: [
     nextCookies(),
     magicLink({
-      sendMagicLink: async ({ email, token, url }, request) => {
+      sendMagicLink: async ({ email, url }) => {
         await resend.emails.send({
           from: "noreply <noreply@edutoolkit.tech>",
           to: [email],
