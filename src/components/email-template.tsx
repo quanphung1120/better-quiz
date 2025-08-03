@@ -1,31 +1,24 @@
-import React from "react";
+interface EmailTemplateProps {
+  pin: string;
+}
 
-const EmailTemplate = ({
-  magicLink = "https://example.com/auth/verify?token=abc123",
-}) => {
+export default function EmailTemplate({ pin }: EmailTemplateProps) {
   return (
     <div>
-      <h2>Sign in to BetterQuiz</h2>
+      <h2>Your BetterQuiz Verification Code</h2>
 
       <p>
-        Click the link below to securely sign in to your account. This link will
-        expire in 15 minutes.
+        Use the verification code below to sign in to your account. This code
+        will expire in 10 minutes.
       </p>
 
       <p>
-        <a href={magicLink}>Sign In to BetterQuiz</a>
+        <strong>Verification Code: {pin}</strong>
       </p>
 
-      <p>
-        If the link doesn&apos;t work, you can copy and paste this URL into your
-        browser:
-      </p>
+      <p>Enter this code on the sign-in page to access your account.</p>
 
-      <p>{magicLink}</p>
-
-      <p>If you didn&apos;t request this email, you can safely ignore it.</p>
+      <p>If you didn&apos;t request this code, you can safely ignore it.</p>
     </div>
   );
-};
-
-export default EmailTemplate;
+}

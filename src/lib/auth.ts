@@ -1,6 +1,6 @@
 import { db } from "@/db/drizzle";
 import { betterAuth } from "better-auth";
-import { magicLink } from "better-auth/plugins";
+import { emailOTP } from "better-auth/plugins";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { nextCookies } from "better-auth/next-js";
 import * as schema from "@/db/schema";
@@ -32,13 +32,16 @@ export const auth = betterAuth({
   },
   plugins: [
     nextCookies(),
-    magicLink({
-      sendMagicLink: async ({ email, url }) => {
+    emailOTP({
+      overrideDefaultEmailVerification: true,
+      allowedAttempts: 5,
+      expiresIn: 300,
+      async sendVerificationOTP({ email, otp }) {
         await resend.emails.send({
           from: "noreply <noreply@edutoolkit.tech>",
           to: [email],
           subject: "Your verification code",
-          react: EmailTemplate({ magicLink: url }),
+          react: EmailTemplate({ pin: otp }),
         });
       },
     }),
