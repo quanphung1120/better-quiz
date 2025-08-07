@@ -1,4 +1,4 @@
-import { ProfileDropdown } from "@/components/profile-dropdown";
+import { ProfileDropdown } from "@/components/shared/profile-dropdown";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";

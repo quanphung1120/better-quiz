@@ -1,6 +1,6 @@
-import { Header } from "@/components/header";
+import { Header } from "@/components/homepage/header";
 
-export default function RootLayout({
+export default function LoginLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

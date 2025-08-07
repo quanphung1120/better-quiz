@@ -1,7 +1,5 @@
 "use client";
 
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,19 +9,22 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { authClient } from "@/lib/auth-client";
-import { CreditCard, HelpCircle, LogOut, Settings, User } from "lucide-react";
+import { User } from "better-auth";
+import {
+  CreditCard,
+  HelpCircle,
+  LogOut,
+  Settings,
+  User2Icon,
+} from "lucide-react";
 import { useRouter } from "next/navigation";
+import React from "react";
 
-interface ProfileDropdownProps {
-  user: {
-    name: string;
-    email: string;
-    image?: string | null;
-    initials?: string;
-  };
+interface ProfileDropdownProps extends React.PropsWithChildren {
+  user: User;
 }
 
-export function ProfileDropdown({ user }: ProfileDropdownProps) {
+export function ProfileDropdown({ user, children }: ProfileDropdownProps) {
   const router = useRouter();
 
   const handleSignOut = async () => {
@@ -38,19 +39,7 @@ export function ProfileDropdown({ user }: ProfileDropdownProps) {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="relative h-9 w-9 rounded-full">
-          <Avatar className="h-9 w-9">
-            <AvatarImage
-              src={
-                user.image ||
-                "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"
-              }
-              alt={"Avatar of " + user.name}
-            />
-          </Avatar>
-        </Button>
-      </DropdownMenuTrigger>
+      <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
       <DropdownMenuContent className="w-64" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
@@ -62,7 +51,7 @@ export function ProfileDropdown({ user }: ProfileDropdownProps) {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem className="cursor-pointer">
-          <User className="mr-2 h-4 w-4" />
+          <User2Icon className="mr-2 h-4 w-4" />
           <span>Profile</span>
         </DropdownMenuItem>
         <DropdownMenuItem className="cursor-pointer">
